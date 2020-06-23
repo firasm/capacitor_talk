@@ -91,8 +91,41 @@ def create_multipleChoice_widget(description, options, correct_answer):
 
     return widgets.VBox([description_out, alternativ, check, feedback_out])
     
-Q1 = create_multipleChoice_widget('CQ 1 - Does the capacitance of a device depend on the applied voltage?',['apple','banana','pear'],'pear')
-Q2 = create_multipleChoice_widget('CQ 2 - Would you place the plates of a parallel-plate capacitor closer together or farther apart to increase their capacitance?',['cat','dog','mouse'],'dog')
+Q1 = create_multipleChoice_widget('CQ 1 - Does the capacitance of a device depend on the applied voltage?',['Yes','No'],'No')
+Q2 = create_multipleChoice_widget('CQ 2 - Would you place the plates of a parallel-plate capacitor closer together or farther apart to increase their capacitance?',['Closer together','Further apart'],'Further apart')
 Q3 = create_multipleChoice_widget('CQ 3 - The value of the capacitance is zero if the plates are not charged. True or False?',['True', 'False'],'True')
-Q4 = create_multipleChoice_widget('CQ 4 - Why does adding a dielectric increase the capacitance?',['True', 'False'],'True')
-Q5 = create_multipleChoice_widget('CQ 5 - What would happen if a conducting slab rather than a dielectric were inserted into the gap between the capacitor plates.',['Option A', 'Option B', 'Option C', 'Option D'],'Option C')
+Q4 = create_multipleChoice_widget('CQ 4 - Why does adding a dielectric increase the capacitance?',['Additional surface area to store charge',
+                                                                                                   'E field increases', 
+                                                                                                   'E field decreases',],'E field decreasess')
+Q5 = create_multipleChoice_widget('CQ 5 - What would happen if a conducting slab rather than a dielectric was inserted between the capacitor plates, without touching? (Bonus: why?)',['Capacitance would increase', 'Capacitance would decrease', 'Energy stored will be released', 'Circuit would break'],'Capacitance would increase')
+
+
+
+## Markdown in python cells
+
+from IPython.display import Markdown
+
+
+## hide code
+
+def hide_code_in_slideshow():   
+    from IPython import display
+    import binascii
+    import os
+    uid = binascii.hexlify(os.urandom(8)).decode()    
+    html = """<div id="%s"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#%s");
+            if (p.length==0) return;
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script>""" % (uid, uid)
+
+    # Run this in a cell
+    # display.display_html(html, raw=True)
