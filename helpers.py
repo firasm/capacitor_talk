@@ -1,6 +1,8 @@
 # Import libraries
 
 import seaborn as sns
+sns.set('talk', font_scale=1.4)
+sns.set_style('whitegrid')
 
 global pd,np,plt#,IFrame
 
@@ -98,7 +100,7 @@ Q2 = create_multipleChoice_widget('CQ 2 - Would you place the plates of a parall
 Q3 = create_multipleChoice_widget('CQ 3 - The value of the capacitance is zero if the plates are not charged. True or False?',['True', 'False'],'True')
 Q4 = create_multipleChoice_widget('CQ 4 - Why does adding a dielectric increase the capacitance?',['Additional surface area to store charge',
                                                                                                    'E field increases', 
-                                                                                                   'E field decreases',],'E field decreasess')
+                                                                                                   'E field decreases',],'E field decreases')
 Q5 = create_multipleChoice_widget('CQ 5 - What would happen if a conducting slab rather than a dielectric was inserted between the capacitor plates, without touching? (Bonus: why?)',['Capacitance would increase', 'Capacitance would decrease', 'Energy stored will be released', 'Circuit would break'],'Capacitance would increase')
 
 
@@ -147,12 +149,11 @@ def plot_VQ(voltage,charge):
     VQ = {'Voltage': voltage,
           'Charge': charge}
 
-    pd.DataFrame(VQ)
+    VQ = pd.DataFrame(VQ)
 
     ax = sns.scatterplot(x='Voltage',y='Charge', data=VQ)
-    sns.set('talk', font_scale=1.4)
-    sns.set_style('whitegrid')
     sns.despine()
+
     ax = ax.set(xlabel = 'Voltage ($V$)',
            ylabel = 'Charge ($pC$)',
            ylim = (0, None),
@@ -165,11 +166,9 @@ def plot_dC(separation,capacitance):
     dC = {'Separation': separation,
           'Capacitance': capacitance}
 
-    pd.DataFrame(dC)
+    dC = pd.DataFrame(dC)
 
     ax = sns.scatterplot(x='Separation',y='Capacitance', data=dC)
-    sns.set('talk', font_scale=1.4)
-    sns.set_style('whitegrid')
     sns.despine()
     ax = ax.set(xlabel = 'Separation ($mm$)',
            ylabel = 'Capacitance ($pF$)',
@@ -177,17 +176,16 @@ def plot_dC(separation,capacitance):
            xlim = (0,max(separation)*1.2),
            title = 'Parallel Plate Capacitor: $C$ and $d$'
           )
+    sns.set_style('whitegrid')
 
 def plot_AC(area,capacitance):
 
     AC = {'Area': area,
           'Capacitance': capacitance}
 
-    pd.DataFrame(AC)
+    AC = pd.DataFrame(AC)
 
     ax = sns.scatterplot(x='Area',y='Capacitance', data=AC)
-    sns.set('talk', font_scale=1.4)
-    sns.set_style('whitegrid')
     sns.despine()
     ax = ax.set(xlabel = 'Area ($mm^2$)',
            ylabel = 'Capacitance ($pF$)',
@@ -195,4 +193,5 @@ def plot_AC(area,capacitance):
            xlim = (0,None),
            title = 'Parallel Plate Capacitor: $C$ and $A$'
           )
+    sns.set_style('whitegrid')
 
