@@ -1,5 +1,7 @@
 # Import libraries
 
+import seaborn as sns
+
 global pd,np,plt#,IFrame
 
 pd = __import__('pandas',globals(),locals())
@@ -129,3 +131,68 @@ def hide_code_in_slideshow():
 
     # Run this in a cell
     # display.display_html(html, raw=True)
+
+## Cute thing to show the slides are interactive
+
+def ready():
+    print("Ready to start!")
+
+# Jupyterthemes command
+#!jt -t grade3 -tfs 14 -dfs 14 -ofs 14 -T
+
+## Plotting functions
+
+def plot_VQ(voltage,charge):
+    
+    VQ = {'Voltage': voltage,
+          'Charge': charge}
+
+    pd.DataFrame(VQ)
+
+    ax = sns.scatterplot(x='Voltage',y='Charge', data=VQ)
+    sns.set('talk', font_scale=1.4)
+    sns.set_style('whitegrid')
+    sns.despine()
+    ax = ax.set(xlabel = 'Voltage ($V$)',
+           ylabel = 'Charge ($pC$)',
+           ylim = (0, None),
+           xlim = (0,None),
+           title = 'Parallel Plate Capacitor: $Q$ and $V$'
+          )
+
+def plot_dC(separation,capacitance):
+
+    dC = {'Separation': separation,
+          'Capacitance': capacitance}
+
+    pd.DataFrame(dC)
+
+    ax = sns.scatterplot(x='Separation',y='Capacitance', data=dC)
+    sns.set('talk', font_scale=1.4)
+    sns.set_style('whitegrid')
+    sns.despine()
+    ax = ax.set(xlabel = 'Separation ($mm$)',
+           ylabel = 'Capacitance ($pF$)',
+           ylim = (0, max(capacitance)*1.25),
+           xlim = (0,max(separation)*1.2),
+           title = 'Parallel Plate Capacitor: $C$ and $d$'
+          )
+
+def plot_AC(area,capacitance):
+
+    AC = {'Area': area,
+          'Capacitance': capacitance}
+
+    pd.DataFrame(AC)
+
+    ax = sns.scatterplot(x='Area',y='Capacitance', data=AC)
+    sns.set('talk', font_scale=1.4)
+    sns.set_style('whitegrid')
+    sns.despine()
+    ax = ax.set(xlabel = 'Area ($mm^2$)',
+           ylabel = 'Capacitance ($pF$)',
+           ylim = (0, None),
+           xlim = (0,None),
+           title = 'Parallel Plate Capacitor: $C$ and $A$'
+          )
+
